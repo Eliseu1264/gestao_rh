@@ -1,6 +1,7 @@
+from django import urls
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url
+# from django.conf.urls import url
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,6 +27,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

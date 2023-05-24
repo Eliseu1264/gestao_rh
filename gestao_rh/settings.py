@@ -1,17 +1,23 @@
 import os
-from django.utils.translation import ugettext_lazy as _
+from pathlib import Path
+# from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'wmy(n$=uo7%d%b23_ah)q+ywi-f6d!y%2d4pvp5ctf6c8su)c$'
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '34.254.220.85',
-    'localhost',
-    'gestaorh.gregorypacheco.com.br'
-]
+ALLOWED_HOSTS = ['*']
+    
+# ALLOWED_HOSTS = [
+#     '34.254.220.85',
+#     'localhost',
+#     'gestaorh.gregorypacheco.com.br'
+# ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -115,7 +121,14 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 
 
-DATABASE_ROUTERS = ['gestao_rh.DBRoutes.DBRoutes']
+# DATABASE_ROUTERS = ['gestao_rh.DBRoutes.DBRoutes']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 LANGUAGES = (
     ('en', _('English')),
@@ -127,4 +140,4 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-from .local_settings import *
+# from .local_settings import *
